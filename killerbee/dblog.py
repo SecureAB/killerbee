@@ -46,7 +46,8 @@ class DBLogger:
 
         # Initalize the connection
         try:
-            self.db = MySQLdb.connect(user=DB_USER, passwd=DB_PASS, db=DB_NAME, host=DB_HOST, port=DB_PORT)
+            self.db = MySQLdb.connect(user=config.DB_USER, passwd=config.DB_PASS, db=config.DB_NAME,
+                                      host=config.DB_HOST, port=config.DB_PORT)
         except Exception as (errno, errmsg):
             raise Exception("DBLogger was unable to connect to the database: " \
                             +"(error %d): %s (Note: connection values should be in config.py)." % (errno,errmsg))
