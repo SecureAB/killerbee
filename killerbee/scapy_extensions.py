@@ -459,7 +459,7 @@ def kbdecrypt(source_pkt, key = None, verbose = None, doMicCheck = False):
         nonce = struct.pack('L',source_pkt[ZigbeeNWK].ext_src)+struct.pack('I',source_pkt[ZigbeeSecurityHeader].fc) + sec_ctrl_byte
         zigbeeData = pkt[ZigbeeAppDataPayload].do_build()
     else:
-        nonce = struct.pack('L',source_pkt[ZigbeeSecurityHeader].source)+struct.pack('I',source_pkt[ZigbeeSecurityHeader].fc) + sec_ctrl_byte
+        nonce = struct.pack('Q',source_pkt[ZigbeeSecurityHeader].source)+struct.pack('I',source_pkt[ZigbeeSecurityHeader].fc) + sec_ctrl_byte
         zigbeeData = pkt[ZigbeeNWK].do_build()
     # For zigbeeData, we need the entire zigbee packet, minus the encrypted data and mic (4 bytes).
     zigbeeData = zigbeeData[:-crop_size]
@@ -540,7 +540,7 @@ def kbencrypt(source_pkt, data, key = None, verbose = None):
         nonce = struct.pack('L',source_pkt[ZigbeeNWK].ext_src)+struct.pack('I',source_pkt[ZigbeeSecurityHeader].fc) + sec_ctrl_byte
         zigbeeData = pkt[ZigbeeAppDataPayload].do_build()
     else:
-        nonce = struct.pack('L',source_pkt[ZigbeeSecurityHeader].source)+struct.pack('I',source_pkt[ZigbeeSecurityHeader].fc) + sec_ctrl_byte
+        nonce = struct.pack('Q',source_pkt[ZigbeeSecurityHeader].source)+struct.pack('I',source_pkt[ZigbeeSecurityHeader].fc) + sec_ctrl_byte
         zigbeeData = pkt[ZigbeeNWK].do_build()
 
     # minimum security level is DOT154_CRYPT_ENC_MIC32 but provide more if requested
