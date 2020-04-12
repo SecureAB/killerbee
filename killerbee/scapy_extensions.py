@@ -7,14 +7,7 @@ setattr(conf, 'killerbee_channel', DEFAULT_KB_CHANNEL)
 setattr(conf, 'killerbee_page', DEFAULT_KB_PAGE)
 setattr(conf, 'killerbee_device', DEFAULT_KB_DEVICE)
 setattr(conf, 'killerbee_nkey', None)
-from scapy.base_classes import SetGen
-from scapy.packet import Gen, Raw
 from scapy.all import *
-# use scapy_overrides if available
-try:
-    from scapy_overrides import *
-except ImportError:
-    pass
 # This line will allow KillerBee's pcap reader to overwrite scapy's reader that is imported on the
 # above line, per suggestion from cutaway at https://code.google.com/p/killerbee/issues/detail?id=28:
 from killerbee import *
